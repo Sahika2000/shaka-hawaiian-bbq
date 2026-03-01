@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { prisma } from '@/lib/prisma';
 import { formatPrice } from '@/lib/utils';
 import styles from './confirmation.module.css';
-
+export const dynamic = 'force-dynamic';
 export default async function ConfirmationPage({
   searchParams,
 }: {
