@@ -3,10 +3,6 @@ import { stripe } from '@/lib/stripe';
 import { prisma } from '@/lib/prisma';
 import type Stripe from 'stripe';
 
-export const runtime = "nodejs";          // Stripe needs node runtime
-export const dynamic = "force-dynamic";   // avoid caching / static optimization
-export const revalidate = 0;              // no ISR caching
-
 export async function POST(req: NextRequest) {
   const body = await req.text();
   const sig = req.headers.get('stripe-signature');
@@ -43,3 +39,4 @@ export async function POST(req: NextRequest) {
 
   return NextResponse.json({ received: true });
 }
+
