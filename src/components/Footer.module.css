@@ -1,0 +1,75 @@
+.footer {
+  background: var(--charcoal);
+  color: rgba(255,255,255,0.8);
+  margin-top: auto;
+}
+
+.inner {
+  display: flex;
+  gap: 60px;
+  flex-wrap: wrap;
+  padding-top: 60px;
+  padding-bottom: 40px;
+  justify-content: space-between;
+}
+
+.brand {
+  flex: 1;
+  min-width: 200px;
+}
+
+.logo {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--sand);
+  margin-bottom: 10px;
+}
+
+.brand p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.6);
+}
+
+.info {
+  display: flex;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.infoGroup h4 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sand-dark);
+  margin-bottom: 10px;
+}
+
+.infoGroup address,
+.infoGroup p {
+  font-style: normal;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.7;
+}
+
+.infoGroup a {
+  color: var(--sand);
+  font-weight: 700;
+  transition: color 0.15s;
+}
+
+.infoGroup a:hover {
+  color: white;
+}
+
+.copy {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding: 20px 0;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.4);
+}

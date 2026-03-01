@@ -1,0 +1,428 @@
+.page {
+  min-height: 80vh;
+  padding-bottom: 80px;
+}
+
+.catNav {
+  position: sticky;
+  top: 70px;
+  z-index: 50;
+  background: rgba(250,247,240,0.97);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.catNav::-webkit-scrollbar { display: none; }
+
+.catNavInner {
+  display: flex;
+  gap: 4px;
+  padding: 12px 24px;
+  min-width: max-content;
+}
+
+.catNavBtn {
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1.5px solid transparent;
+  background: transparent;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+
+.catNavBtn:hover {
+  border-color: var(--ocean-light);
+  color: var(--ocean);
+}
+
+.catNavBtn.active {
+  background: var(--ocean);
+  color: white;
+  border-color: var(--ocean);
+}
+
+.pageHeader {
+  padding: 48px 0 32px;
+}
+
+.pageHeader h1 {
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  color: var(--ocean);
+  margin-bottom: 8px;
+}
+
+.pageHeader p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+.categorySection {
+  margin-bottom: 56px;
+  scroll-margin-top: 140px;
+}
+
+.categoryTitle {
+  font-size: 1.6rem;
+  color: var(--text-main);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--sand-dark);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.categoryTitle::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 28px;
+  background: var(--coral);
+  border-radius: 2px;
+}
+
+.itemGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 400px) {
+  .itemGrid { grid-template-columns: 1fr; }
+}
+
+.itemCard {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  transition: all 0.2s;
+}
+
+.itemCard:hover {
+  border-color: var(--ocean-light);
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+
+.itemContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.itemHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.itemName {
+  font-size: 1rem;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.3;
+}
+
+.itemPrice {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--ocean);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.itemDesc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.itemChoiceHint {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--coral);
+  background: rgba(232,89,58,0.1);
+  padding: 3px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+
+.addBtn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--ocean);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.addBtn:hover {
+  background: var(--coral);
+  transform: scale(1.05);
+}
+
+/* Modal */
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10,79,110,0.5);
+  backdrop-filter: blur(4px);
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  width: 100%;
+  max-width: 560px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  animation: fadeIn 0.2s ease;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.modalHeader h3 {
+  font-size: 1.2rem;
+  color: var(--ocean);
+}
+
+.modalClose {
+  background: var(--sand);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 1rem;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.modalClose:hover { background: var(--border); }
+
+.modalPrompt {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+
+.modalDesc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+/* ── Quantity row ── */
+.qtyRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1.5px solid var(--border);
+}
+
+.qtyLabel {
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--text-main);
+}
+
+.qtyControls {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.qtyBtn {
+  width: 48px;
+  height: 44px;
+  background: var(--sand);
+  border: none;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: background 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qtyBtn:hover { background: var(--ocean); color: white; }
+
+.qtyValue {
+  min-width: 52px;
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-main);
+  padding: 0 8px;
+  border-left: 1.5px solid var(--border);
+  border-right: 1.5px solid var(--border);
+}
+
+/* ── Entrée slot (each of the 3 sections) ── */
+.entreeSlot {
+  margin-bottom: 24px;
+}
+
+.entreeSlotHeader {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1.5px solid var(--border);
+}
+
+.entreeSlotTitle {
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--text-main);
+}
+
+.entreeSlotRequired {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* ── 2-column grid of entrée options ── */
+.entreeGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+@media (max-width: 480px) {
+  .entreeGrid { grid-template-columns: 1fr; }
+}
+
+.entreeOption {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.15s;
+  background: white;
+}
+
+.entreeOption:hover {
+  border-color: var(--ocean-light);
+  background: rgba(10,79,110,0.03);
+}
+
+.entreeOptionChecked {
+  border-color: var(--ocean) !important;
+  background: rgba(10,79,110,0.07) !important;
+}
+
+.entreeCheckbox {
+  margin-top: 2px;
+  accent-color: var(--ocean);
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.entreeOptionText {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.3;
+}
+
+.upcharge {
+  color: var(--coral);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ── Modal footer ── */
+.modalFooter {
+  position: sticky;
+  bottom: 0;
+  background: white;
+  padding-top: 16px;
+  border-top: 1.5px solid var(--border);
+  margin-top: 8px;
+}
+
+.upchargeNote {
+  font-size: 0.82rem;
+  color: var(--coral);
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.choiceList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.choiceItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.choiceItem:has(input:checked) {
+  border-color: var(--ocean);
+  background: rgba(10,79,110,0.06);
+  color: var(--ocean);
+}
+
+.choiceItem input {
+  accent-color: var(--ocean);
+}

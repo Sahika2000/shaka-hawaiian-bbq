@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model MenuCategory {
+  id        String     @id @default(uuid())
+  name      String
+  sortOrder Int        @default(0) @map("sort_order")
+  items     MenuItem[]
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime   @updatedAt @map("updated_at")
+
+  @@map("menu_categories")
+}
+
+model MenuItem {
+  id          String       @id @default(uuid())
+  categoryId  String       @map("category_id")
+  category    MenuCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  name        String
+  description String?
+  basePrice   Decimal      @map("base_price") @db.Decimal(10, 2)
+  options     Json?
+  available   Boolean      @default(true)
+  sortOrder   Int          @default(0) @map("sort_order")
+  orderItems  OrderItem[]
+  createdAt   DateTime     @default(now()) @map("created_at")
+  updatedAt   DateTime     @updatedAt @map("updated_at")
+
+  @@map("menu_items")
+}
+
+model Customer {
+  id        String   @id @default(uuid())
+  name      String
+  phone     String
+  orders    Order[]
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("customers")
+}
+
+model Order {
+  id                   String      @id @default(uuid())
+  customerId           String      @map("customer_id")
+  customer             Customer    @relation(fields: [customerId], references: [id])
+  status               String      @default("pending")
+  totalCents           Int         @map("total_cents")
+  pickupTimeNote       String?     @map("pickup_time_note")
+  specialInstructions  String?     @map("special_instructions")
+  stripeSessionId      String?     @unique @map("stripe_session_id")
+  stripePaymentIntentId String?    @map("stripe_payment_intent_id")
+  items                OrderItem[]
+  createdAt            DateTime    @default(now()) @map("created_at")
+  updatedAt            DateTime    @updatedAt @map("updated_at")
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id             String   @id @default(uuid())
+  orderId        String   @map("order_id")
+  order          Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  menuItemId     String   @map("menu_item_id")
+  menuItem       MenuItem @relation(fields: [menuItemId], references: [id])
+  name           String
+  quantity       Int      @default(1)
+  unitPriceCents Int      @map("unit_price_cents")
+  selectedOption String?  @map("selected_option")
+  notes          String?
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  @@map("order_items")
+}
