@@ -3,7 +3,9 @@ import { stripe } from '@/lib/stripe';
 import { prisma } from '@/lib/prisma';
 import type Stripe from 'stripe';
 
-export const config = { api: { bodyParser: false } };
+export const runtime = "nodejs";          // Stripe needs node runtime
+export const dynamic = "force-dynamic";   // avoid caching / static optimization
+export const revalidate = 0;              // no ISR caching
 
 export async function POST(req: NextRequest) {
   const body = await req.text();
